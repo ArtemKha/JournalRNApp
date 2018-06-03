@@ -10,10 +10,12 @@ export default class Post extends Component {
   };
 
   render() {
+    const { id, title } = this.props.navigation.state.params;
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Post</Text>
-        <Text style={styles.instructions}>To post, click here</Text>
+        <Text style={styles.welcome}>{title}</Text>
+        <Text style={styles.instructions}>Post {id}</Text>
       </View>
     );
   }

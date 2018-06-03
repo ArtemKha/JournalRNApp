@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { Text, View, ActivityIndicator, FlatList } from 'react-native';
 import { graphql } from 'react-apollo';
 import styles from '../styles';
 import gql from 'graphql-tag';
 
 class Posts extends Component {
+  goToPost = item => {
+    const { id, title } = item;
+    this.props.navigation.navigate('Post', {
+      id,
+      title
+    });
+  };
   render() {
     const { loading, allPosts } = this.props;
 
@@ -12,11 +19,18 @@ class Posts extends Component {
 
     return (
       <View>
-        {allPosts.map(item => (
-          <Text style={styles.instructions} key={item.id}>
-            {item.title}
-          </Text>
-        ))}
+        <FlatList
+          data={allPosts}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <Text
+              style={styles.instructions}
+              onPress={() => this.goToPost(item)}
+            >
+              {item.title}
+            </Text>
+          )}
+        />
       </View>
     );
   }

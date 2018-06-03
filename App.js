@@ -27,9 +27,8 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <View style={styles.container}>
-          <Text style={styles.welcome}>It's React Native Apollo app 🚀</Text>
-          <Posts />
-          <Button onPress={this.goToPost} title="Go to post page" />
+          <Text style={styles.welcome}>It's RN Apollo app 🚀</Text>
+          <Posts navigation={this.props.navigation} />
         </View>
       </ApolloProvider>
     );
