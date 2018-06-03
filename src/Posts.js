@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator, FlatList } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import { graphql } from 'react-apollo';
-import styles from '../styles';
 import gql from 'graphql-tag';
+import Loading from './components/Loading';
+import styles from './styles';
 
 class Posts extends Component {
-  goToPost = item => {
-    const { id, title } = item;
+  goToPost = id => {
     this.props.navigation.navigate('Post', {
-      id,
-      title
+      id
     });
   };
+
   render() {
     const { loading, allPosts } = this.props;
 
-    if (loading) return <ActivityIndicator size="large" color="#0000ff" />;
+    if (loading) return <Loading />;
 
     return (
       <View>
@@ -25,7 +25,7 @@ class Posts extends Component {
           renderItem={({ item }) => (
             <Text
               style={styles.instructions}
-              onPress={() => this.goToPost(item)}
+              onPress={() => this.goToPost(item.id)}
             >
               {item.title}
             </Text>
