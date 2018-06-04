@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Loading from './components/Loading';
+import Loading from '../Loading';
 import navigationStyles from '../../styles/navigationStyles';
 import styles from '../../styles';
 

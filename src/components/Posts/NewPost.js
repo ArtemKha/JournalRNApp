@@ -9,7 +9,9 @@ export default class NewPost extends Component {
     ...navigationStyles
   };
 
-  postForm = () => {};
+  postForm = data => {
+    console.log(data);
+  };
 
   render() {
     return (
