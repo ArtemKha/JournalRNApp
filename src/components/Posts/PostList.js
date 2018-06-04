@@ -3,9 +3,9 @@ import { Text, View, FlatList } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Loading from './components/Loading';
-import styles from './styles';
+import styles from '../../styles';
 
-class Posts extends Component {
+class PostList extends Component {
   goToPost = id => {
     this.props.navigation.navigate('Post', {
       id
