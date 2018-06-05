@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList } from 'react-native';
+import { List, ListItem, Body, Right, Icon } from 'native-base';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Loading from '../Loading';
 import styles from '../../styles';
 
 class PostList extends Component {
-  goToPost = id => {
+  goToPost = ({ id, title }) => {
     this.props.navigation.navigate('Post', {
-      id
+      id,
+      title
     });
   };
 
@@ -19,25 +21,29 @@ class PostList extends Component {
 
     return (
       <View>
-        <FlatList
-          data={allPosts}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <Text
-              style={styles.instructions}
-              onPress={() => this.goToPost(item.id)}
-            >
-              {item.title}
-            </Text>
-          )}
-        />
+        <List>
+          <FlatList
+            data={allPosts}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <ListItem onPress={() => this.goToPost(item)}>
+                <Body>
+                  <Text>{item.title}</Text>
+                </Body>
+                <Right>
+                  <Icon name="arrow-forward" />
+                </Right>
+              </ListItem>
+            )}
+          />
+        </List>
       </View>
     );
   }
 }
 
 const postsQuery = gql`
-  {
+  query postsQuery {
     allPosts {
       id
       title

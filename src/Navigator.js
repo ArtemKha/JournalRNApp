@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
+import { Fab, Icon } from 'native-base';
 import {
   Text,
   View,
@@ -32,12 +33,9 @@ class Home extends Component {
       <View style={homeStyles.container}>
         <Text style={styles.welcome}>It's the RN Apollo app 🚀</Text>
         <PostList navigation={this.props.navigation} />
-        <TouchableHighlight
-          onPress={this.goToNewPost}
-          style={homeStyles.newPosts}
-        >
-          <Text style={homeStyles.newPostText}>New post +</Text>
-        </TouchableHighlight>
+        <Fab style={homeStyles.newPost} onPress={this.goToNewPost}>
+          <Icon name="add" />
+        </Fab>
       </View>
     );
   }
@@ -46,19 +44,10 @@ class Home extends Component {
 const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between'
-    // alignItems: 'center',
-    // backgroundColor: '#F5FCFF'
+    justifyContent: 'flex-start'
   },
-  newPosts: {
-    // justifyContent: 'space-between'
-    // alignItems: 'center',
-    padding: 20,
+  newPost: {
     backgroundColor: '#82D8D8'
-  },
-  newPostText: {
-    textAlign: 'center',
-    fontSize: 20
   }
 });
 

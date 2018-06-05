@@ -7,20 +7,19 @@ import navigationStyles from '../../styles/navigationStyles';
 import styles from '../../styles';
 
 class Post extends Component {
-  static navigationOptions = {
-    title: 'Post',
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params.title,
     ...navigationStyles
-  };
+  });
 
   render() {
     const { loading, Post } = this.props;
     if (loading) return <Loading />;
 
-    const { id, title } = Post;
+    const { body } = Post;
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>{title}</Text>
-        <Text style={styles.instructions}>Post {id}</Text>
+        <Text style={styles.welcome}>{body}</Text>
       </View>
     );
   }
@@ -31,6 +30,7 @@ const postQuery = gql`
     Post(id: $id) {
       id
       title
+      body
     }
   }
 `;
