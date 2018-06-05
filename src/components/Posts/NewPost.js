@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Loading from '../../components/Loading';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import PostForm from './PostForm';
+import Loading from '../../components/Loading';
 import navigationStyles from '../../styles/navigationStyles';
 
 class NewPost extends Component {

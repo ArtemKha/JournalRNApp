@@ -31,7 +31,6 @@ class Home extends Component {
   render() {
     return (
       <View style={homeStyles.container}>
-        <Text style={styles.welcome}>It's the RN Apollo app 🚀</Text>
         <PostList navigation={this.props.navigation} />
         <Fab style={homeStyles.newPost} onPress={this.goToNewPost}>
           <Icon name="add" />

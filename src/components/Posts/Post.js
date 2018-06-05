@@ -14,12 +14,14 @@ class Post extends Component {
 
   render() {
     const { loading, Post } = this.props;
-    if (loading) return <Loading />;
 
-    const { body } = Post;
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>{body}</Text>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Text style={styles.welcome}>{Post.body}</Text>
+        )}
       </View>
     );
   }
