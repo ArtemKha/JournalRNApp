@@ -4,7 +4,6 @@ import { List, ListItem, Body, Right, Icon } from 'native-base';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Loading from '../Loading';
-import styles from '../../styles';
 
 class PostList extends Component {
   goToPost = ({ id, title }) => {

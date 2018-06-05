@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "iojs"
+  - "7"
+# If both package.json and yarn.lock are present, it runs yarn
+install:
+  - npm install
+script:
+  npm test
+cache:
+  directories:
+    - "node_modules"

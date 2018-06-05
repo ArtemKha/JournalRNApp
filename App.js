@@ -8,12 +8,10 @@ const client = new ApolloClient({
   uri: 'https://api.graph.cool/simple/v1/cjhxizhdn57rh0194ubnrb6h3'
 });
 
-export default class App extends Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
-        <Navigator />
-      </ApolloProvider>
-    );
-  }
+export default function App() {
+  return (
+    <ApolloProvider client={client}>
+      <Navigator />
+    </ApolloProvider>
+  );
 }
