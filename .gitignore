@@ -6,6 +6,9 @@
 # dependencies
 /node_modules
 
+#app
+configs.js
+
 # misc
 .env.local
 .env.development.local
