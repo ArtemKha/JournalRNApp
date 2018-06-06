@@ -5,7 +5,13 @@ import { Form, Item, Input, Label } from 'native-base';
 export default class UserForm extends Component {
   state = { email: '', password: '' };
 
-  submitForm = () => {};
+  submitForm = () => {
+    const { email, password } = this.state;
+    this.props.onSubmit({
+      email,
+      password
+    });
+  };
 
   onChangeEmail = email => {
     this.setState({ email });
