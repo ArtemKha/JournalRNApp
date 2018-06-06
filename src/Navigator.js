@@ -11,6 +11,7 @@ import {
 import PostList from './components/Posts/PostList';
 import Post from './components/Posts/Post';
 import NewPost from './components/Posts/NewPost';
+import Login from './components/User/Login';
 import styles from './styles';
 import navigationStyles from './styles/navigationStyles';
 
@@ -50,7 +51,7 @@ const homeStyles = StyleSheet.create({
   }
 });
 
-export default createStackNavigator({
+const Navigator = createStackNavigator({
   Home: {
     screen: Home
   },
@@ -61,3 +62,10 @@ export default createStackNavigator({
     screen: NewPost
   }
 });
+
+const NavWrapper = props => {
+  return <Login />;
+  return <Navigator />;
+};
+
+export default NavWrapper;
