@@ -64,8 +64,8 @@ const Navigator = createStackNavigator({
 });
 
 const NavWrapper = props => {
-  return <Login />;
   return <Navigator />;
+  return <Login />;
 };
 
 export default NavWrapper;

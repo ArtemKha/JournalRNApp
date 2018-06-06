@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import UserForm from './UserForm';
 import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import UserForm from './UserForm';
+import { signIn } from '../../../loginUtils';
 
 class CreateUser extends Component {
   createUser = async ({ email, password }) => {
@@ -19,7 +20,7 @@ class CreateUser extends Component {
           password
         }
       });
-      console.log(signin.data.signinUser.token);
+      signIn(signin.data.signinUser.token);
     } catch (error) {
       console.log(error);
     }
