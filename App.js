@@ -6,9 +6,10 @@ import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 import Navigator from './src/Navigator';
 import { getToken } from './loginUtils';
+import configs from './configs';
 
 const httpLink = createHttpLink({
-  uri: 'https://api.graph.cool/simple/v1/cjhxizhdn57rh0194ubnrb6h3'
+  uri: `https://api.graph.cool/simple/v1/${configs.key}`
 });
 
 const authLink = setContext(async (req, { headers }) => {
