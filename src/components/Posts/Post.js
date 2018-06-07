@@ -13,13 +13,22 @@ class Post extends Component {
     ...navigationStyles
   });
 
+  goToEditPost = () => {
+    const { id, title } = this.props.Post;
+
+    this.props.navigation.navigate('UpdatePost', {
+      id,
+      title
+    });
+  };
+
   render() {
     const { loading, Post } = this.props;
     if (loading) return <Loading />;
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>{Post.body}</Text>
-        <Fab style={styles.buttonColor} onPress={null}>
+        <Fab style={styles.buttonColor} onPress={this.goToEditPost}>
           <Icon name="create" />
         </Fab>
       </View>

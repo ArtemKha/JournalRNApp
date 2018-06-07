@@ -3,13 +3,18 @@ import { Form, Item, Input, Label } from 'native-base';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
 
 export default class PostForm extends Component {
-  constructor() {
-    super();
+  static defaultProps = {
+    post: {}
+  };
+
+  constructor(props) {
+    super(props);
     this.state = {
-      title: '',
-      body: ''
+      title: props.post.title || '',
+      body: props.post.body || ''
     };
   }
+
   submitForm = () => {
     this.props.onSubmit({
       title: this.state.title,

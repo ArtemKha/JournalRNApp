@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Loading from './components/Loading';
 import Post from './components/Posts/Post';
 import NewPost from './components/Posts/NewPost';
+import UpdatePost from './components/Posts/UpdatePost';
 import Login from './components/User/Login';
 
 const Navigator = createStackNavigator({
@@ -17,6 +18,9 @@ const Navigator = createStackNavigator({
   },
   NewPost: {
     screen: NewPost
+  },
+  UpdatePost: {
+    screen: UpdatePost
   }
 });
 
