@@ -17,14 +17,9 @@ class NewPost extends Component {
   };
 
   postForm = ({ title, body }) => {
-    const { newPost, navigation } = this.props;
+    const { newPost, navigation, screenProps } = this.props;
     this.setState({ loading: true });
-    newPost({
-      variables: {
-        title,
-        body
-      }
-    })
+    newPost({ variables: { title, body, userId: screenProps.user.id } })
       .then(() => {
         navigation.goBack();
       })
@@ -34,6 +29,8 @@ class NewPost extends Component {
   };
 
   render() {
+    console.log(this.props.screenProps.user);
+
     return (
       <View>
         {this.state.loading ? (
@@ -47,8 +44,8 @@ class NewPost extends Component {
 }
 
 const newPost = gql`
-  mutation newPost($title: String!, $body: String!) {
-    createPost(title: $title, body: $body) {
+  mutation newPost($title: String!, $body: String!, $userId: ID!) {
+    createPost(title: $title, body: $body, userId: $userId) {
       id
     }
   }

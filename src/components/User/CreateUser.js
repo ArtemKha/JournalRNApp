@@ -20,7 +20,8 @@ class CreateUser extends Component {
           password
         }
       });
-      signIn(signin.data.signinUser.token);
+      await signIn(signin.data.signinUser.token);
+      this.props.client.resetStore();
     } catch (error) {
       console.log(error);
     }

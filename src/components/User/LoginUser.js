@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+
 import UserForm from './UserForm';
 import { signIn } from '../../../loginUtils';
 
@@ -9,12 +10,10 @@ class LoginUser extends Component {
   loginUser = async ({ email, password }) => {
     try {
       const signin = await this.props.signinUser({
-        variables: {
-          email,
-          password
-        }
+        variables: { email, password }
       });
       signIn(signin.data.signinUser.token);
+      this.props.client.resetStore();
     } catch (error) {
       console.log(error);
     }

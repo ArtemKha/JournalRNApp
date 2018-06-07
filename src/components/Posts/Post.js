@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import { Fab, Icon } from 'native-base';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Loading from '../Loading';
@@ -14,14 +15,13 @@ class Post extends Component {
 
   render() {
     const { loading, Post } = this.props;
-
+    if (loading) return <Loading />;
     return (
       <View style={styles.container}>
-        {loading ? (
-          <Loading />
-        ) : (
-          <Text style={styles.welcome}>{Post.body}</Text>
-        )}
+        <Text style={styles.welcome}>{Post.body}</Text>
+        <Fab style={styles.buttonColor} onPress={null}>
+          <Icon name="create" />
+        </Fab>
       </View>
     );
   }

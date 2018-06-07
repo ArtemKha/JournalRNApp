@@ -1,59 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import { Fab, Icon } from 'native-base';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Button,
-  TouchableHighlight
-} from 'react-native';
-import PostList from './components/Posts/PostList';
+import { graphql, withApollo } from 'react-apollo';
+import gql from 'graphql-tag';
+import Home from './components/Home';
+import Loading from './components/Loading';
 import Post from './components/Posts/Post';
 import NewPost from './components/Posts/NewPost';
 import Login from './components/User/Login';
-import styles from './styles';
-import navigationStyles from './styles/navigationStyles';
-
-class Home extends Component {
-  static navigationOptions = {
-    title: 'Home',
-    ...navigationStyles
-  };
-
-  goToPost = () => {
-    this.props.navigation.navigate('Post');
-  };
-
-  goToNewPost = () => {
-    this.props.navigation.navigate('NewPost');
-  };
-
-  render() {
-    return (
-      <View style={homeStyles.container}>
-        <PostList navigation={this.props.navigation} />
-        <Fab style={homeStyles.newPost} onPress={this.goToNewPost}>
-          <Icon name="add" />
-        </Fab>
-      </View>
-    );
-  }
-}
-
-const homeStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start'
-  },
-  newPost: {
-    backgroundColor: '#82D8D8'
-  }
-});
 
 const Navigator = createStackNavigator({
   Home: {
-    screen: Home
+    screen: withApollo(Home)
   },
   Post: {
     screen: Post
@@ -63,9 +20,25 @@ const Navigator = createStackNavigator({
   }
 });
 
-const NavWrapper = props => {
-  return <Navigator />;
-  return <Login />;
+const NavWrapper = ({ loading, user }) => {
+  if (loading) return <Loading />;
+  if (!user) return <Login />;
+  return <Navigator screenProps={{ user }} />;
 };
 
-export default NavWrapper;
+const userQuery = gql`
+  query userQuery {
+    user {
+      id
+      email
+      posts(orderBy: createdAt_DESC) {
+        id
+        title
+      }
+    }
+  }
+`;
+
+export default graphql(userQuery, {
+  props: ({ data }) => ({ ...data })
+})(NavWrapper);
